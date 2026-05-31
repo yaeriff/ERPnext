@@ -1,0 +1,13 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Booking Kamar",
+  "enabled": 1,
+  "modified": "2026-05-31 19:09:02.434604",
+  "module": null,
+  "name": "Booking Kamar",
+  "script": "frappe.ui.form.on('Booking Kamar', {\r\n    kamar: function(frm) {\r\n        if (frm.doc.kamar) {\r\n            frappe.db.get_value('Kamar', frm.doc.kamar, 'harga_sewa', function(r) {\r\n                if (r && frm.doc.durasi_bulan) {\r\n                    frm.set_value('total_harga', r.harga_sewa * frm.doc.durasi_bulan);\r\n                }\r\n            });\r\n        }\r\n    },\r\n    durasi_bulan: function(frm) {\r\n        if (frm.doc.kamar) {\r\n            frappe.db.get_value('Kamar', frm.doc.kamar, 'harga_sewa', function(r) {\r\n                if (r) {\r\n                    frm.set_value('total_harga', r.harga_sewa * frm.doc.durasi_bulan);\r\n                }\r\n            });\r\n        }\r\n    }\r\n});",
+  "view": "Form"
+ }
+]
